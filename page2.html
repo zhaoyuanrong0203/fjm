@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>无限点击</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        a {
+            color: #ff4d4d;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>无限点击</h1>
+    <p>你已经点击了 <span id="count">0</span> 次。</p>
+    <p><a href="#" id="next-link">点击这里继续</a></p>
+
+    <script>
+        // 获取当前点击次数
+        let count = localStorage.getItem('clickCount') || 0;
+        document.getElementById('count').textContent = count;
+
+        // 生成下一个链接
+        const nextLink = document.getElementById('next-link');
+        nextLink.href = `page${Number(count) + 1}.html`;
+
+        // 更新点击次数
+        nextLink.addEventListener('click', () => {
+            count = Number(count) + 1;
+            localStorage.setItem('clickCount', count);
+        });
+    </script>
+</body>
+</html>
